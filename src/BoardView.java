@@ -13,7 +13,7 @@ public class BoardView extends JPanel {
         boardPanel.setLayout(new GridLayout(3, 3));
         add(boardPanel, BorderLayout.CENTER);
         add(statusBar, BorderLayout.SOUTH);
-        
+
     }
 
     public BoardView(Board board, GameMain gameMain) {

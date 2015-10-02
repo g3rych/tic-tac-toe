@@ -7,6 +7,7 @@ public class TTT {
         BoardView view = new BoardView(board, gameMain);
         new JFrame() {
             {
+                setLocationRelativeTo(null);
                 setVisible(true);
                 add(view);
                 pack();
