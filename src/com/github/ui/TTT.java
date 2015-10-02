@@ -1,3 +1,8 @@
+package com.github.ui;
+
+import com.github.controller.GameMain;
+import com.github.model.Board;
+
 import javax.swing.*;
 
 public class TTT {
@@ -7,6 +12,12 @@ public class TTT {
         BoardView view = new BoardView(board, gameMain);
         new JFrame() {
             {
+                try {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                } catch (Exception e) {
+
+                }
+                setLocationRelativeTo(null);
                 setVisible(true);
                 add(view);
                 pack();

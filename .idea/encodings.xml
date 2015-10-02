@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
-    <file url="file://$PROJECT_DIR$/src/Board.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/BoardView.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/Cell.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/GameMain.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/GameState.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/Space.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/TTT.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/github/controller/GameMain.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/github/controller/GameState.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/github/model/Board.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/github/model/Cell.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/github/model/Space.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/github/ui/BoardView.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/github/ui/TTT.java" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

@@ -1,3 +1,5 @@
+package com.github.model;
+
 import javax.swing.*;
 import javax.swing.event.SwingPropertyChangeSupport;
 import java.awt.*;
