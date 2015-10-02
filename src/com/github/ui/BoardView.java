@@ -1,3 +1,9 @@
+package com.github.ui;
+
+import com.github.controller.GameMain;
+import com.github.model.Board;
+import com.github.model.Cell;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -23,10 +29,9 @@ public class BoardView extends JPanel {
         statusBar.setText("Current player " + gameMain.getCurrentPlayer());
         for (int row = 0; row < Board.ROWS; row++) {
             for (int col = 0; col < Board.COLS; col++) {
-                board.cells[row][col] = new Cell(row, col);
-                //board.cells[row][col].paint();
-                boardPanel.add(board.cells[row][col]);
-                board.cells[row][col].addActionListener(evt -> {
+                board.getCell(row, col).setFocusable(false);
+                boardPanel.add(board.getCell(row, col));
+                board.getCell(row, col).addActionListener(evt -> {
                     Cell source = (Cell) evt.getSource();
                     if (gameMain.isValidInput(source.getRow(), source.getCol())) {
                         gameMain.playerMove(source.getRow(), source.getCol());
@@ -42,6 +47,6 @@ public class BoardView extends JPanel {
     public void paint() {
         for (int row = 0; row < Board.ROWS; row++)
             for (int col = 0; col < Board.COLS; col++)
-                board.cells[row][col].paint();
+                board.getCell(row, col).paint();
     }
 }
