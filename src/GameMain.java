@@ -76,5 +76,16 @@ public class GameMain {
     public boolean isValidInput(int row, int col) {
         return board.cells[row][col].getSpace() == Space.EMPTY;
     }
+
+    public String getCurrentPlayer() {
+        switch (currentPlayer) {
+            case CROSS:
+                return "CROSS";
+            case NOUGHT:
+                return "NOUGHT";
+            default:
+                return "CROSS";
+        }
+    }
 }
 
