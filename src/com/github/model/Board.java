@@ -11,10 +11,10 @@ public class Board {
     }
 
     public void clear() {
-        for (int row = 0; row < ROWS; row++) {
-            for (int col = 0; col < COLS; col++) {
+        for (int row = 0; row < Board.ROWS; row++) {
+            for (int col = 0; col < Board.COLS; col++) {
                 cells[row][col] = new Cell(row, col);
-                cells[row][col].paint();
+                cells[row][col].setField(Field.EMPTY);
             }
         }
     }
@@ -22,4 +22,5 @@ public class Board {
     public Cell getCell(int row, int col) {
         return cells[row][col];
     }
+
 }

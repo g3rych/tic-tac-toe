@@ -2,51 +2,41 @@ package com.github.ui;
 
 import com.github.controller.GameMain;
 import com.github.model.Board;
-import com.github.model.Cell;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class BoardView extends JPanel {
-    Board board;
-    GameMain gameMain;
-    JPanel boardPanel = new JPanel();
-    JLabel statusBar = new JLabel(" ", JLabel.CENTER);
+    private Board board;
+    private GameMain gameMain;
+    private CellView[][] cellView = new CellView[Board.ROWS][Board.COLS];
 
-
-    public BoardView() {
-        setLayout(new BorderLayout());
-        boardPanel.setLayout(new GridLayout(3, 3));
-        add(boardPanel, BorderLayout.CENTER);
-        add(statusBar, BorderLayout.SOUTH);
-
-    }
-
-    public BoardView(Board board, GameMain gameMain) {
-        this();
+    public BoardView(Board board,GameMain gameMain) {
         this.board = board;
         this.gameMain = gameMain;
-        statusBar.setText("Current player " + gameMain.getCurrentPlayer());
+        setLayout(new GridLayout(3,3));
         for (int row = 0; row < Board.ROWS; row++) {
             for (int col = 0; col < Board.COLS; col++) {
-                board.getCell(row, col).setFocusable(false);
-                boardPanel.add(board.getCell(row, col));
-                board.getCell(row, col).addActionListener(evt -> {
-                    Cell source = (Cell) evt.getSource();
-                    if (gameMain.isValidInput(source.getRow(), source.getCol())) {
-                        gameMain.playerMove(source.getRow(), source.getCol());
-                        statusBar.setText("Current player " + gameMain.getCurrentPlayer());
-                    }
-                    paint();
+                cellView[row][col] = new CellView(board.getCell(row,col));
+                add(cellView[row][col]);
+                cellView[row][col].addActionListener(e -> {
+                    CellView source = (CellView) e.getSource();
+                    gameMain.playerMove(source.getCell().getRow(),source.getCell().getCol());
+                    source.setText(updateFields(source));
                     gameMain.checkWinner();
                 });
             }
         }
     }
-
-    public void paint() {
-        for (int row = 0; row < Board.ROWS; row++)
-            for (int col = 0; col < Board.COLS; col++)
-                board.getCell(row, col).paint();
+    public String updateFields(CellView s) {
+        String field = "";
+        switch (s.getCell().getField()) {
+            case CROSS: field = "X";break;
+            case NOUGHT: field = "O"; break;
+            default:break;
+        }
+        return field;
     }
 }
+
+
