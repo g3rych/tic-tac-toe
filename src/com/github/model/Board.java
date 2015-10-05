@@ -6,7 +6,7 @@ import java.beans.PropertyChangeSupport;
 public class Board {
     public static int ROWS = 3;
     public static int COLS = 3;
-    PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     private Cell cells[][] = new Cell[ROWS][COLS];
     private Field currentPlayer = Field.CROSS;
     public Board() {
