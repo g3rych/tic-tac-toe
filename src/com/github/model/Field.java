@@ -1,9 +1,7 @@
 package com.github.model;
 
-public enum Space {
+public enum Field {
     CROSS,
     NOUGHT,
     EMPTY
-
-
 }

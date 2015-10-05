@@ -1,21 +1,22 @@
 package com.github.model;
 
-import javax.swing.*;
-import javax.swing.event.SwingPropertyChangeSupport;
-import java.awt.*;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
-public class Cell extends JButton {
-    public static final Dimension cellSize = new Dimension(50, 50);
+public class Cell {
+    PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     private int row;
     private int col;
-    private Space space;
-    private SwingPropertyChangeSupport pcs = new SwingPropertyChangeSupport(this);
+    private Field field;
 
     public Cell(int row, int col) {
         this.row = row;
         this.col = col;
-        space = Space.EMPTY;
-        setPreferredSize(cellSize);
+        field = Field.EMPTY;
+    }
+
+    public void addPropertyChangeSupport(PropertyChangeListener listener) {
+        pcs.addPropertyChangeListener(listener);
     }
 
     public int getRow() {
@@ -26,27 +27,16 @@ public class Cell extends JButton {
         return col;
     }
 
-    public void paint() {
-        switch (space) {
-            case CROSS:
-                setText("X");
-                break;
-            case NOUGHT:
-                setText("O");
-                break;
-            default:
-                setText(" ");
-                break;
-        }
+    public Field getField() {
+        return field;
     }
 
-    public Space getSpace() {
-        return space;
+    public void setField(Field field) {
+        Field oldField = this.field;
+        this.field = field;
+        pcs.firePropertyChange("Field", oldField, field);
     }
-
-    public void setSpace(Space space) {
-        Space oldSpace = this.space;
-        this.space = space;
-        pcs.firePropertyChange("cell", oldSpace, space);
+    public String toString() {
+        return "row "+"col "+field+" ";
     }
 }
