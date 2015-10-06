@@ -11,18 +11,18 @@ public class MainWindow extends JFrame {
     JMenuBar menuBar = new JMenuBar();
     JMenu menuGame = new JMenu("Game");
     JCheckBoxMenuItem enableAICheck = new JCheckBoxMenuItem("Enable AI");
-    private Board model = new Board();
+    private Board board;
     private JLabel statusBar = new JLabel("Current Player X ");
     PropertyChangeListener listener = evt -> {
-        statusBar.setText("Current player " + model.getCurrentPlayer().toString());
+        statusBar.setText("Current player " + board.getCurrentPlayer().toString());
     };
 
 
     public MainWindow() {
-        model = new Board();
-        model.addPropertyChangeListener(listener);
-        GameMain gameMain = new GameMain(model);
-        BoardView view = new BoardView(model, gameMain);
+        board = new Board();
+        board.addPropertyChangeListener(listener);
+        GameMain gameMain = new GameMain(board);
+        BoardView view = new BoardView(board, gameMain);
 
 
         setLayout(new BorderLayout());
@@ -31,10 +31,10 @@ public class MainWindow extends JFrame {
         setJMenuBar(menuBar);
         menuBar.add(menuGame);
         menuGame.add(enableAICheck);
-        enableAICheck.setState(model.isEnableAI());
+        enableAICheck.setState(board.isEnableAI());
 
         enableAICheck.addActionListener(e -> {
-            model.setEnableAI(true);
+            board.setEnableAI(true);
         });
 
 
