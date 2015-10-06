@@ -16,7 +16,7 @@ public class BoardView extends JPanel {
         Cell source = (Cell) e.getSource();
         int row = source.getRow();
         int col = source.getCol();
-        updateField(row, col);
+        updateFields();
     };
     public BoardView(Board board,GameMain gameMain) {
         this.board = board;
@@ -42,8 +42,10 @@ public class BoardView extends JPanel {
         }
     }
 
-    public void updateField(int row, int col) {
-        cellView[row][col].paint();
+    public void updateFields() {
+        for (int row = 0; row < Board.ROWS; row++)
+            for (int col = 0; col < Board.COLS; col++)
+                cellView[row][col].paint();
     }
 
 }

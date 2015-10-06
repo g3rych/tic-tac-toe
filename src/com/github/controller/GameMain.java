@@ -4,10 +4,12 @@ import com.github.model.Board;
 import com.github.model.Field;
 
 import javax.swing.*;
+import java.util.Random;
 
 public class GameMain {
     private Board board;
     private GameState currentState = GameState.PLAYING;
+    private Random random = new Random();
 
     public GameMain(Board board) {
         this.board = board;
@@ -16,6 +18,7 @@ public class GameMain {
     public void playerMove(int row, int col) {
         board.getCell(row, col).setField(board.getCurrentPlayer());
         board.setCurrentPlayer((board.getCurrentPlayer() == Field.CROSS) ? Field.NOUGHT : Field.CROSS);
+        if (board.isEnableAI()) randomMove();
     }
 
     public void checkWinner() {
@@ -78,12 +81,26 @@ public class GameMain {
         userAnswer = JOptionPane.showConfirmDialog(null, "Restart Game?", winner, JOptionPane.YES_NO_OPTION);
         if (userAnswer == JOptionPane.YES_OPTION) {
             board.clear();
+            board.setCurrentPlayer(Field.CROSS);
         } else
             System.exit(0);
     }
 
     public boolean isValidInput(int row, int col) {
         return board.getCell(row, col).getField() == Field.EMPTY;
+    }
+
+    public void randomMove() {
+        boolean validInput = false;
+        do {
+            int row = random.nextInt(3);
+            int col = random.nextInt(3);
+            if (isValidInput(row, col)) {
+                board.getCell(row, col).setField(board.getCurrentPlayer());
+                board.setCurrentPlayer((board.getCurrentPlayer() == Field.CROSS) ? Field.NOUGHT : Field.CROSS);
+                validInput = true;
+            }
+        } while (!validInput);
     }
 }
 

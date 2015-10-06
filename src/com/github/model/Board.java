@@ -9,6 +9,7 @@ public class Board {
     private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     private Cell cells[][] = new Cell[ROWS][COLS];
     private Field currentPlayer = Field.CROSS;
+    private boolean enableAI = false;
     public Board() {
         init();
 
@@ -45,5 +46,15 @@ public class Board {
         Field oldPlayer = this.currentPlayer;
         this.currentPlayer = currentPlayer;
         pcs.firePropertyChange("currentPlayer", oldPlayer, currentPlayer);
+    }
+
+    public boolean isEnableAI() {
+        return enableAI;
+    }
+
+    public void setEnableAI(boolean enableAI) {
+        boolean oldAI = this.enableAI;
+        this.enableAI = enableAI;
+        pcs.firePropertyChange("enable AI", oldAI, enableAI);
     }
 }
